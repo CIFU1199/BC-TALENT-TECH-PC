@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Box, TextField, Button, Paper, ThemeProvider, createTheme } from '@mui/material';
+import { Box, TextField, Button, Paper, ThemeProvider } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import { useNavigate } from 'react-router-dom'; // Asegúrate de importar useNavigate desde react-router-dom
 // Asegúrate de que la ruta sea correcta según tu estructura de carpetas
 import loginImage from '../assets/login.svg'; // Ajusta la ruta si es necesario
+import { darkTheme } from '../styles/styles'; // Asegúrate de que la ruta sea correcta según tu estructura de carpetas
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -104,18 +105,5 @@ const Login = () => {
   );
 };
 
-// Tema oscuro (igual que antes)
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#3797e5',
-    },
-    background: {
-      default: '#121212',
-      paper: '#151f3c',
-    },
-  },
-});
 
 export default Login;

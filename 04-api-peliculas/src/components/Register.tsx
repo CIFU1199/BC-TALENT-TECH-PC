@@ -8,8 +8,7 @@ import {
   Typography, 
   Link,
   InputAdornment,
-  IconButton,
-  createTheme
+  IconButton
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -22,6 +21,7 @@ import {
   Lock
 } from '@mui/icons-material';
 import loginImage from '../assets/login.svg';
+import { darkTheme } from '../styles/styles'; // Asegúrate de que la ruta sea correcta según tu estructura de carpetas
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -87,10 +87,10 @@ const Register = () => {
       return;
     }
 
-    // Verificar si el usuario ya existe
-    const users = JSON.parse(localStorage.getItem('users') || "[]");
-    const userExists = users.some((user: any) => 
-      user.email === formData.email || user.documento === formData.documento
+    // Check if the user already exists
+    const users: { email: string; documentId: string }[] = JSON.parse(localStorage.getItem('users') || "[]");
+    const userExists = users.some((user) => 
+      user.email === formData.email || user.documentId === formData.documento
     );
 
     if (userExists) {
@@ -339,46 +339,5 @@ const Register = () => {
   );
 };
 
-// Tema oscuro mejorado
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#3797e5',
-      contrastText: '#fff',
-    },
-    background: {
-      default: '#121212',
-      paper: '#1e1e1e',
-    },
-    text: {
-      primary: '#fff',
-      secondary: 'rgba(255, 255, 255, 0.7)',
-    },
-  },
-  components: {
-    MuiTextField: {
-      styleOverrides: {
-        root: {
-          '& .MuiOutlinedInput-root': {
-            '& fieldset': {
-              borderColor: 'rgba(255, 255, 255, 0.23)',
-            },
-            '&:hover fieldset': {
-              borderColor: '#3797e5',
-            },
-          },
-        },
-      },
-    },
-    MuiPaper: {
-      styleOverrides: {
-        root: {
-          backgroundImage: 'none', // Elimina el efecto de gradiente por defecto
-        },
-      },
-    },
-  },
-});
 
 export default Register;
